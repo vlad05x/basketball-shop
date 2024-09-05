@@ -1,0 +1,98 @@
+.promotions {
+  padding: 20px;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+}
+
+.promotions__container {
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.promotions__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #2b324e;
+}
+
+.promotions__divider {
+  height: 1px;
+  background-color: #d9d7d7;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.promotions__catalog {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.product-card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-card__image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.product-card__description {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.product-card__price {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.product-card__button {
+  background-color: #f15a24;
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.product-card__button:hover {
+  background-color: #e14d16;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .promotions__title {
+    font-size: 2rem;
+  }
+
+  .product-card {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-card__button {
+    padding: 8px 16px;
+    font-size: 0.875rem;
+  }
+}

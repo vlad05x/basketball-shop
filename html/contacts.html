@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/contact.css">
+    <title>Контакти</title>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header__container">
+            <div class="contact-info">
+                <a href="tel:0502991861" class="phone-number">+38(050)299-18-61 (Безкоштовна лінія)</a>
+                <a href="tel:0998948016" class="phone-number">+38(099)894-80-16</a>
+                <a href="tel:0660172534" class="phone-number">+38(066)017-25-34</a>
+                <div class="auth">
+                    <a href="../html/signIn.html" class="auth-link">Вхід/Регестрація</a>
+                </div>
+            </div>
+            <!-- NavBar menu -->
+            <nav class="navbar">
+                <div class="navbar__logo">
+                    <a href="../index.html">
+                        <img src="https://basketmania.com.ua/image/cache/catalog/BascketMania_logo_slogan_horizontal_937x300-937x300.png"
+                            alt="BasketMania Logo" class="navbar__logo-img" />
+                    </a>
+                </div>
+                <div class="navbar__search-bar">
+                    <input type="search" placeholder="Search..." class="navbar__search-input" />
+                    <div class="navbar__search-buttons">
+                        <button class="navbar__search-btn">
+                            <img src="../images/search.png" alt="Search" />
+                        </button>
+                        <button class="navbar__wishlist-btn">
+                            <img src="../images/heart.png" alt="Wishlist" />
+                        </button>
+                        <button class="navbar__cart-btn">
+                            <img src="../images/shopping-cart.png" alt="Cart" />
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <!-- Catalog -->
+            <div class="catalog">
+                <a href="/" class="catalog-link" style="background-color: #f15a24">Каталог товарів</a>
+                <a href="../html/promotions.html" class="catalog-link">Акції</a>
+                <a href="../html/about-us.html" class="catalog-link">Про нас</a>
+                <a href="../html/delivery.html" class="catalog-link">Доставка та оплата</a>
+                <a href="../html/returns.html" class="catalog-link">Повернення та обмін</a>
+                <a href="../html/trust-us.html" class="catalog-link">Нам довіряють</a>
+                <a href="#" class="catalog-link">Контакти</a>
+            </div>
+        </div>
+        </div>
+    </header>
+    <main class="contact-section">
+        <div class="contact__container">
+            <h1 class="contact-title">Контакти</h1>
+            <div class="contact-line"></div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h2 class="info-title">Наші контакти</h2>
+                    <p class="info-text">
+                        Якщо у вас є питання або пропозиції, зв'яжіться з нами будь-яким зручним
+                        способом.
+                    </p>
+                    <ul class="info-list">
+                        <li>
+                            <strong>Адреса:</strong> б-р Вацлава Гавела, 26, Київ, Україна
+                        </li>
+                        <li>
+                            <strong>Телефон:</strong> +38 (044) 123-45-67
+                        </li>
+                        <li>
+                            <strong>Email:</strong> support@basketmania.ua
+                        </li>
+                    </ul>
+                </div>
+            
+                <div class="contact-form">
+                    <h2 class="form-title">Зворотний зв'язок</h2>
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Ім'я:</label>
+                            <input type="text" id="name" name="name" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Повідомлення:</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-button">Відправити</button>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="map-section">
+                <h2 class="map-title">Знайдіть нас на карті</h2>
+                <div class="map">
+                    <!-- Вбудована карта Google Maps -->
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d25307.933876513327!2d30.435292014074135!3d50.44887719201982!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40d4cf8ebd04a1b7%3A0x471bdc571a5adf0!2sBoryspil%2C%20Kyiv%20region%2C%20Ukraine!5e0!3m2!1sen!2sua!4v1607450340897!5m2!1sen!2sua"
+                        width="100%" height="400" frameborder="0" style="border:0" allowfullscreen="" aria-hidden="false"
+                        tabindex="0"></iframe>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+
+</html>
