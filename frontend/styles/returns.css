@@ -1,0 +1,45 @@
+/* Основной контейнер секции */
+.return-exchange-section {
+    padding: 50px 20px;
+    background-color: #f4f4f4;
+    text-align: left;
+    margin: 0 auto;
+    font-family: "Arial", sans-serif;
+}
+
+/* Заголовок */
+.return-exchange-section__title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #2b324e;
+    margin-bottom: 20px;
+}
+
+/* Разделительная линия */
+.return-exchange-section__divider {
+    height: 2px;
+    background-color: #d9d7d7;
+    margin-bottom: 20px;
+}
+
+/* Основной контент */
+.return-exchange-section__content {
+    margin-top: 20px;
+}
+
+/* Текстовый контент */
+.return-exchange-section__text {
+    font-size: 1rem;
+    color: #333333;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Подзаголовки */
+.return-exchange-section__subtitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #2b324e;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}

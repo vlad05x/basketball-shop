@@ -1,0 +1,108 @@
+/* Основной контейнер секции */
+.delivery-payment-section {
+  padding: 50px 20px;
+  background-color: #f4f4f4;
+  text-align: left;
+  margin: 0 auto;
+  font-family: "Arial", sans-serif;
+  max-width: 1200px;
+  /* Ограничение максимальной ширины контейнера */
+}
+
+/* Заголовок */
+.delivery-payment-section__title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #2b324e;
+  margin-bottom: 20px;
+}
+
+/* Разделительная линия */
+.delivery-payment-section__divider {
+  height: 2px;
+  background-color: #d9d7d7;
+  margin-bottom: 20px;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0 40px;
+  font-size: 1rem;
+  text-align: left;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+}
+
+/* Стили для заголовков и ячеек таблицы */
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+}
+
+.styled-table thead th {
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.styled-table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.styled-table tbody td {
+  color: #333;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #4CAF50;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .delivery-payment-section__title {
+    font-size: 2rem;
+  }
+
+  .styled-table {
+    font-size: 0.875rem;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 10px;
+  }
+
+  .delivery-payment-section {
+    padding: 30px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .delivery-payment-section__title {
+    font-size: 1.75rem;
+  }
+
+  .styled-table {
+    font-size: 0.75rem;
+  }
+
+  .styled-table th,
+  .styled-table td {
+    padding: 8px;
+  }
+
+  .delivery-payment-section {
+    padding: 20px 10px;
+  }
+}

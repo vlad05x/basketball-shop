@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/main.css" />
+    <title>BasketMania</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__container">
+        <div class="contact-info">
+          <a href="tel:0502991861" class="phone-number"
+            >+38(050)299-18-61 (Безкоштовна лінія)</a
+          >
+          <a href="tel:0998948016" class="phone-number">+38(099)894-80-16</a>
+          <a href="tel:0660172534" class="phone-number">+38(066)017-25-34</a>
+          <div class="auth">
+            <a href="#" class="auth-link">Вхід/Регестрація</a>
+          </div>
+        </div>
+
+        <!-- <nav class="navbar">
+          <div class="navbar__logo">
+            <a href="#">
+              <img
+                src="https://basketmania.com.ua/image/cache/catalog/BascketMania_logo_slogan_horizontal_937x300-937x300.png"
+                alt="BasketMania Logo"
+                class="navbar__logo-img"
+              />
+            </a>
+          </div>
+          <ul class="navbar__menu">
+            <li class="navbar__menu-item">
+              <a href="#">Все 🔻</a>
+              <ul class="navbar__dropdown-menu">
+                <li><a href="#">М'ячи</a></li>
+                <li><a href="#">Кросівки</a></li>
+                <li><a href="#">Захист та фіксатори</a></li>
+                <li><a href="#">Одяг</a></li>
+                <li><a href="#">Рюкзак та сумки</a></li>
+                <li><a href="#">Форма</a></li>
+                <li><a href="#">Інветар для баскетболу</a></li>
+              </ul>
+            </li>
+          </ul>
+          <div class="navbar__search-bar">
+            <input
+              type="search"
+              placeholder="Search..."
+              class="navbar__search-input"
+            />
+            <div class="navbar__search-buttons">
+              <button class="navbar__search-btn">
+                <img src="images/search.png" alt="Search" />
+              </button>
+              <button class="navbar__wishlist-btn">
+                <img src="images/heart.png" alt="Wishlist" />
+              </button>
+              <button class="navbar__cart-btn">
+                <img src="images/shopping-cart.png" alt="Cart" />
+              </button>
+            </div>
+          </div>
+        </nav> -->
+        <!-- <div class="catalog">
+          <a href="/" class="catalog-link">Каталог товарів</a>
+          <a href="/promotions" class="catalog-link">Акції</a>
+          <a href="/about-us" class="catalog-link">Про нас</a>
+          <a href="/delivery" class="catalog-link">Доставка та оплата</a>
+          <a href="/returns" class="catalog-link">Повернення та обмін</a>
+          <a href="/trust-us" class="catalog-link">Нам довіряють</a>
+          <a href="/reviews" class="catalog-link">Відгуки</a>
+          <a href="/contacts" class="catalog-link">Контакти</a>
+        </div> -->
+      </div>
+    </header>
+  </body>
+</html>
