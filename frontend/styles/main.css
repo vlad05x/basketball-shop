@@ -95,6 +95,7 @@
   background: none;
   border: none;
   margin-left: 10px;
+  cursor: pointer;
 }
 
 .navbar__search-buttons img {

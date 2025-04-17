@@ -22,6 +22,7 @@ $email = htmlspecialchars($_SESSION['email']);
 <body>
     <div class="profile-container">
         <div class="profile-header">
+            <a href="../frontend/index.html">Повернення на головну</a>
             <h1>Привіт, <?php echo $first_name . ' ' . $last_name; ?>!</h1>
             <p>Ласкаво просимо до вашого особистого кабінету.</p>
         </div>
