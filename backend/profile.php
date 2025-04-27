@@ -1,11 +1,13 @@
 <?php
 session_start();
 
+// Проверяем, авторизован ли пользователь
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
 
+// Получаем данные пользователя из сессии
 $first_name = htmlspecialchars($_SESSION['first_name']);
 $last_name = htmlspecialchars($_SESSION['last_name']);
 $email = htmlspecialchars($_SESSION['email']);
@@ -38,6 +40,10 @@ $email = htmlspecialchars($_SESSION['email']);
             <div class="detail">
                 <strong>Email:</strong> <?php echo $email; ?>
             </div>
+        </div>
+
+        <div class="logout">
+            <a href="logout.php">Вийти з профілю</a>
         </div>
     </div>
 </body>

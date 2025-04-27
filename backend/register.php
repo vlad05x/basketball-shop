@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 $mysql = new mysqli("localhost", "root", "", "php-shop");
 
 if ($mysql->connect_error) {
-    die("Помилка підключення: " . $mysql->connect_error);
+    die("Ошибка подключения: " . $mysql->connect_error);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $checkEmail = $mysql->query("SELECT * FROM users WHERE email='$email'");
-    
+
     if ($checkEmail->num_rows > 0) {
         echo "Пользователь с таким email уже существует.<br>";
     } else {
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: ./profile.php");
             exit();
         } else {
-            echo "Помилка: " . $mysql->error . "<br>";
+            echo "Ошибка: " . $mysql->error . "<br>";
         }
     }
 }

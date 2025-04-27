@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 
 <head>
     <meta charset="UTF-8" />
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../styles/promotions.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <title>Акціїї</title>
+    <title>Акції</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
                 <a href="tel:0998948016" class="phone-number">+38(099)894-80-16</a>
                 <a href="tel:0660172534" class="phone-number">+38(066)017-25-34</a>
                 <div class="auth">
-                    <a href="../html/signIn.html" class="auth-link">Вхід/Регестрація</a>
+                    <a href="../html/signIn.html" class="auth-link">Увійти/Реєстрація</a>
                 </div>
             </div>
             <!-- NavBar menu -->
@@ -32,7 +32,7 @@
                     </a>
                 </div>
                 <div class="navbar__search-bar">
-                    <input type="search" placeholder="Search..." class="navbar__search-input" />
+                    <input type="search" placeholder="Пошук..." class="navbar__search-input" />
                     <div class="navbar__search-buttons">
                         <button class="navbar__search-btn">
                             <img src="../images/search.svg" alt="Search" />
@@ -41,14 +41,14 @@
                             <img src="../images/heart.svg" alt="Wishlist" />
                         </button>
                         <button class="navbar__cart-btn">
-                            <img src="../images/shopping-cart.svg" alt="Cart" />
+                            <a href="../html/cart.html"><img src="../images/shopping-cart.svg" alt="Cart" /></a>
                         </button>
                     </div>
                 </div>
             </nav>
             <!-- Catalog -->
             <div class="catalog">
-                <a href="/" class="catalog-link" style="background-color: #f15a24">Каталог товарів</a>
+                <a href="../index.html" class="catalog-link" style="background-color: #f15a24">Каталог товарів</a>
                 <a href="#" class="catalog-link">Акції</a>
                 <a href="../html/about-us.html" class="catalog-link">Про нас</a>
                 <a href="../html/delivery.html" class="catalog-link">Доставка та оплата</a>
@@ -58,104 +58,140 @@
             </div>
         </div>
     </header>
+
     <div class="container">
         <h1 class="text-center m-4 fw-bold">Акції</h1>
         <hr class="mb-5 w-50 mx-auto" />
-        <div id="categories-container" class="mb-4"></div>
+        <div id="categories-container" class="mb-4 text-center"></div>
         <div id="products-container" class="row g-4"></div>
     </div>
-</main>
 
-<script>
-     fetch("http://localhost/php-shop/backend/categories.php")
-            .then(response => response.json())
-            .then(categories => {
-                const categoriesContainer = document.getElementById("categories-container");
-                categories.forEach(category => {
-                    const button = document.createElement("button");
-                    button.className = "btn btn-outline-primary m-2";
-                    button.innerHTML = category.name;
+    </main>
 
-                    button.addEventListener("click", () => {
-                        loadProducts(category.id);
-                    });
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const productsContainer = document.getElementById('products-container');
+            const categoriesContainer = document.getElementById('categories-container');
 
-                    categoriesContainer.appendChild(button);
-                });
-            })
-            .catch(error => console.error("Ошибка при загрузке категорий:", error));
-
-        function loadProducts(categoryId = null) {
-            let url = "http://localhost/php-shop/backend/products.php";
-            if (categoryId) {
-                url += `?category_id=${categoryId}`;
-            }
-
-            fetch(url)
-                .then(response => response.json())
-                .then(products => {
-                    const container = document.getElementById("products-container");
-                    container.innerHTML = ""; 
-
-                    if (products.error) {
-                        container.innerHTML = `<p>${products.error}</p>`;
-                        return;
+            // Функция для загрузки всех товаров или по категории
+            async function loadProducts(categoryId = null) {
+                try {
+                    let url = 'http://localhost/php-shop/backend/products.php';
+                    if (categoryId) {
+                        url += `?category_id=${categoryId}`;
                     }
 
-                    products.forEach(product => {
-                        const discountedPrice = (
-                            product.price * (1 - product.discount_percent / 100)
-                        ).toFixed(2);
+                    const response = await fetch(url);
+                    const products = await response.json();
+                    renderProducts(products);
+                } catch (error) {
+                    console.error('Помилка при завантаженні товарів:', error);
+                }
+            }
 
-                        const hasDiscount = product.discount_percent > 0;
+            // Функция для рендера товаров
+            function renderProducts(products) {
+                productsContainer.innerHTML = '';
 
-                        const col = document.createElement("div");
-                        col.className = "col-sm-12 col-md-6 col-lg-4";
+                products.forEach(product => {
+                    const discountedPrice = (product.price * (1 - product.discount_percent / 100)).toFixed(2);
+                    const hasDiscount = product.discount_percent > 0;
 
-                        col.innerHTML = `
-                          <div class="card h-100 shadow-sm">
-                            <img 
-                              src="${product.image_url}" 
-                              class="card-img-top" 
-                              alt="${product.title}" 
-                              style="object-fit: cover; height: 250px;"
-                            />
-                            <div class="card-body d-flex flex-column">
-                              <h5 class="card-title">${product.title}</h5>
-                              <p class="card-text text-muted small">${product.description}</p>
-                              <div class="mt-auto">
+                    const card = document.createElement('div');
+                    card.className = 'col-sm-12 col-md-6 col-lg-4';
+                    card.innerHTML = `
+                    <div class="card h-100 shadow-sm">
+                        <img src="${product.image_url}" class="card-img-top" alt="${product.title}" style="object-fit: cover; height: 250px;" />
+                        <div class="card-body d-flex flex-column">
+                            <h5 class="card-title">${product.title}</h5>
+                            <p class="card-text text-muted small">${product.description}</p>
+                            <div class="mt-auto">
                                 <p class="mb-2">
-                                  <span class="fw-bold text-success">$${discountedPrice}</span>
-                                  ${hasDiscount
-                                ? `<span class="text-muted text-decoration-line-through ms-2">$${product.price}</span>`
-                                : ""
-                            }
+                                    <span class="fw-bold text-success">$${discountedPrice}</span>
+                                    ${hasDiscount ? `<span class="text-muted text-decoration-line-through ms-2">$${product.price}</span>` : ''}
                                 </p>
-                                ${hasDiscount
-                                ? `<span class="badge bg-danger mb-3">-${product.discount_percent}%</span>`
-                                : "<div class='mb-3'></div>"
-                            }
+                                ${hasDiscount ? `<span class="badge bg-danger mb-3">-${product.discount_percent}%</span>` : ''}
                                 <div class="d-flex gap-2">
-                                  <button class="btn btn-success w-50">Купити</button>
+                                    <button class="btn btn-success w-50 buy-btn" data-product-id="${product.id}">Купити</button>
                                     <button class="btn btn-light w-50">
                                         <img src="../images/heart.svg" width="20" height="20" alt="Wishlist" />
                                     </button>
                                 </div>
-                              </div>
                             </div>
-                          </div>
-                        `;
+                        </div>
+                    </div>
+                `;
+                    productsContainer.appendChild(card);
+                });
+            }
 
-                        container.appendChild(col);
+            // Функция для добавления товара в корзину
+            async function addToCart(productId) {
+                try {
+                    const response = await fetch('http://localhost/php-shop/backend/add_to_cart.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ product_id: productId })
                     });
-                })
-                .catch(error => console.error("Ошибка при загрузке товаров:", error));
-        }
-        loadProducts();
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+
+                    const result = await response.json();
+
+                    if (result.success) {
+                        alert(result.success);
+                    } else {
+                        alert(result.error);
+                    }
+                } catch (error) {
+                    console.error('Помилка при додаванні товару в корзину:', error);
+                }
+            }
+
+            // Навешиваем событие на кнопку "Купити"
+            productsContainer.addEventListener('click', event => {
+                const buyButton = event.target.closest('.buy-btn');
+                if (buyButton) {
+                    const productId = buyButton.dataset.productId;
+                    addToCart(productId);
+                }
+            });
+
+            // Загружаем категории
+            async function loadCategories() {
+                try {
+                    const response = await fetch('http://localhost/php-shop/backend/categories.php');
+                    const categories = await response.json();
+
+                    categoriesContainer.innerHTML = '';
+
+                    // Кнопка "Усі товари"
+                    const allButton = document.createElement('button');
+                    allButton.className = 'btn btn-primary m-2';
+                    allButton.textContent = 'Усі товари';
+                    allButton.addEventListener('click', () => loadProducts());
+                    categoriesContainer.appendChild(allButton);
+
+                    // Кнопки по категориям
+                    categories.forEach(category => {
+                        const button = document.createElement('button');
+                        button.className = 'btn btn-outline-primary m-2';
+                        button.textContent = category.name;
+                        button.addEventListener('click', () => loadProducts(category.id));
+                        categoriesContainer.appendChild(button);
+                    });
+                } catch (error) {
+                    console.error('Помилка при завантаженні категорій:', error);
+                }
+            }
+
+            // Инициализация
+            loadCategories();
+            loadProducts();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
