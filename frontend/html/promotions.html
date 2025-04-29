@@ -12,7 +12,6 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header class="header">
         <div class="header__container">
             <div class="contact-info">
@@ -23,7 +22,6 @@
                     <a href="../html/signIn.html" class="auth-link">Увійти/Реєстрація</a>
                 </div>
             </div>
-            <!-- NavBar menu -->
             <nav class="navbar">
                 <div class="navbar__logo">
                     <a href="../index.html">
@@ -46,7 +44,6 @@
                     </div>
                 </div>
             </nav>
-            <!-- Catalog -->
             <div class="catalog">
                 <a href="../index.html" class="catalog-link" style="background-color: #f15a24">Каталог товарів</a>
                 <a href="#" class="catalog-link">Акції</a>
@@ -73,7 +70,6 @@
             const productsContainer = document.getElementById('products-container');
             const categoriesContainer = document.getElementById('categories-container');
 
-            // Функция для загрузки всех товаров или по категории
             async function loadProducts(categoryId = null) {
                 try {
                     let url = 'http://localhost/php-shop/backend/products.php';
@@ -89,7 +85,6 @@
                 }
             }
 
-            // Функция для рендера товаров
             function renderProducts(products) {
                 productsContainer.innerHTML = '';
 
@@ -125,7 +120,6 @@
                 });
             }
 
-            // Функция для добавления товара в корзину
             async function addToCart(productId) {
                 try {
                     const response = await fetch('http://localhost/php-shop/backend/add_to_cart.php', {
@@ -145,8 +139,6 @@
                     console.error('Помилка при додаванні товару в корзину:', error);
                 }
             }
-
-            // Навешиваем событие на кнопку "Купити"
             productsContainer.addEventListener('click', event => {
                 const buyButton = event.target.closest('.buy-btn');
                 if (buyButton) {
@@ -154,8 +146,6 @@
                     addToCart(productId);
                 }
             });
-
-            // Загружаем категории
             async function loadCategories() {
                 try {
                     const response = await fetch('http://localhost/php-shop/backend/categories.php');
@@ -183,7 +173,6 @@
                 }
             }
 
-            // Инициализация
             loadCategories();
             loadProducts();
         });

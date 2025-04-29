@@ -14,6 +14,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastName = $mysql->real_escape_string($_POST['lastName']);
     $email = $mysql->real_escape_string($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $address = $mysql->real_escape_string($_POST['address']);
+    $phone = $mysql->real_escape_string($_POST['phone']);
 
     $checkEmail = $mysql->query("SELECT * FROM users WHERE email='$email'");
 
@@ -26,14 +28,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($mysql->query($sql) === TRUE) {
             $userId = $mysql->insert_id;
 
-            session_start();
-            $_SESSION['user'] = $userId;
-            $_SESSION['first_name'] = $firstName;
-            $_SESSION['last_name'] = $lastName;
-            $_SESSION['email'] = $email;
+            $sqlAdditionalInfo = "INSERT INTO user_profiles (user_id, address, phone) 
+                                  VALUES ('$userId', '$address', '$phone')";
 
-            header("Location: ./profile.php");
-            exit();
+            if ($mysql->query($sqlAdditionalInfo) === TRUE) {
+                session_start();
+                $_SESSION['user'] = $userId;
+                $_SESSION['first_name'] = $firstName;
+                $_SESSION['last_name'] = $lastName;
+                $_SESSION['email'] = $email;
+
+                header("Location: ./profile.php");
+                exit();
+            } else {
+                echo "Ошибка добавления дополнительной информации: " . $mysql->error . "<br>";
+            }
         } else {
             echo "Ошибка: " . $mysql->error . "<br>";
         }
@@ -41,4 +50,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $mysql->close();
-?>
+

@@ -1,16 +1,21 @@
 <?php
 session_start();
 
-// Проверяем, авторизован ли пользователь
 if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
 
-// Получаем данные пользователя из сессии
+require_once 'db.php'; 
+
+$user_id    = $_SESSION['user'];
 $first_name = htmlspecialchars($_SESSION['first_name']);
-$last_name = htmlspecialchars($_SESSION['last_name']);
-$email = htmlspecialchars($_SESSION['email']);
+$last_name  = htmlspecialchars($_SESSION['last_name']);
+$email      = htmlspecialchars($_SESSION['email']);
+
+$stmt = $pdo->prepare("SELECT address, phone FROM user_profiles WHERE user_id = ?");
+$stmt->execute([$user_id]);
+$additional = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -31,15 +36,17 @@ $email = htmlspecialchars($_SESSION['email']);
 
         <div class="profile-details">
             <h2>Інформація про користувача:</h2>
-            <div class="detail">
-                <strong>Ім'я:</strong> <?php echo $first_name; ?>
-            </div>
-            <div class="detail">
-                <strong>Прізвище:</strong> <?php echo $last_name; ?>
-            </div>
-            <div class="detail">
-                <strong>Email:</strong> <?php echo $email; ?>
-            </div>
+            <div class="detail"><strong>Ім'я:</strong> <?php echo $first_name; ?></div>
+            <div class="detail"><strong>Прізвище:</strong> <?php echo $last_name; ?></div>
+            <div class="detail"><strong>Email:</strong> <?php echo $email; ?></div>
+
+            <?php if ($additional): ?>
+                <h3>Додаткова інформація:</h3>
+                <div class="detail"><strong>Адреса:</strong> <?php echo htmlspecialchars($additional['address']); ?></div>
+                <div class="detail"><strong>Телефон:</strong> <?php echo htmlspecialchars($additional['phone']); ?></div>
+            <?php else: ?>
+                <p><em>Додаткова інформація відсутня.</em></p>
+            <?php endif; ?>
         </div>
 
         <div class="logout">
