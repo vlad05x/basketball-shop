@@ -88,11 +88,14 @@
           Разом:
           <span id="total-price" class="text-success fw-bold">$0.00</span>
         </h4>
-        <button class="btn btn-primary mt-3">Оформити замовлення</button>
+        <button id="order-btn" class="btn btn-primary mt-3">Оформити замовлення</button>
       </div>
     </div>
 
     <script>
+      document.getElementById('order-btn').addEventListener('click', function () {
+          alert('Ваше замовлення прийнято!');
+        });
       function loadCart() {
         fetch("http://localhost/php-shop/backend/get_cart.php")
           .then((response) => response.json())

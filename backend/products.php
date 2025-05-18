@@ -1,28 +1,28 @@
 <?php
-include('db.php');
+require_once 'db.php';
 
-$categoryId = isset($_GET['category_id']) ? (int)$_GET['category_id'] : null;
+$categoryId = $_GET['category_id'] ?? null;
+$search = $_GET['search'] ?? '';
 
-$query = "SELECT * FROM products";
+$sql = "SELECT * FROM products WHERE 1=1";
 
-if ($categoryId) {
-    $query .= " WHERE category_id = :category_id";
+$params = [];
+
+if (!empty($categoryId)) {
+    $sql .= " AND category_id = ?";
+    $params[] = $categoryId;
 }
 
-$stmt = $pdo->prepare($query);
-
-if ($categoryId) {
-    $stmt->bindParam(':category_id', $categoryId, PDO::PARAM_INT);
+if (!empty($search)) {
+    $sql .= " AND (title LIKE ? OR description LIKE ?)";
+    $searchParam = "%" . $search . "%";
+    $params[] = $searchParam;
+    $params[] = $searchParam;
 }
 
-$stmt->execute();
+$stmt = $pdo->prepare($sql);
+$stmt->execute($params);
 
 $products = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-if ($products) {
-    echo json_encode($products);
-} else {
-    echo json_encode(['error' => 'No products found']);
-}
+echo json_encode($products);
 ?>
-
